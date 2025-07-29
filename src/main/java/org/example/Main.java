@@ -27,29 +27,29 @@ public class Main {
         TratamientoService ts1 = new TratamientoService();
         MascotaTratamientoService mts1 = new MascotaTratamientoService();
 
-        //Registrar Cliente
+        // Registrar Cliente
         cs1.registrarCliente("Enmanuel", "enmanuel@gmail");
-        //Buscar cliente por ID
+        // Buscar cliente por ID
         Cliente cliente = cs1.buscarClienteId(1);
         if (cliente != null) {
             System.out.println("Cliente registrado: " + cliente.getNombre());
         }
-        //Registrar mascota
+        // Registrar mascota
         ms1.registrarMascota("Toby", "Perro", 5, cliente.getId());
         ms1.registrarMascota("Mimi", "Gato", 3, cliente.getId());
 
-        // 4. Consultar mascotas del cliente
+        // Consultar mascotas del cliente
         List<Mascota> mascotas = ms1.consultarMascotaCliente(cliente.getId());
         System.out.println("Mascotas de " + cliente.getNombre() + ":");
         for (Mascota m : mascotas) {
             System.out.println("- " + m.getNombre() + " (" + m.getTipo() + ")");
         }
-        // 5. Registrar tratamiento
+        // Registrar tratamiento
         ts1.registrarTratamiento("Vacuna Rabia", "Vacuna anual contra la rabia");
         ts1.registrarTratamiento("Desparasitación", "Tratamiento antiparasitario completo");
 
 
-        // 7. Asignar tratamientos a mascotas (nuevo método en MascotaTratamientoService)
+        // Asignar tratamientos a mascotas
         Mascota mascota = ms1.buscarMascotaId(1);
         Tratamiento tratamiento1 = ts1.buscarTratamiento(1);
         Tratamiento tratamiento2 = ts1.buscarTratamiento(2);
@@ -62,7 +62,7 @@ public class Main {
             System.out.println("No se pudo asignar tratamientos, datos incompletos.");
         }
 
-        // 8. Mostrar tratamientos de una mascota
+        // Mostrar tratamientos de una mascota
         List<MascotaTratamiento> tratamientosMascota = mts1.buscarTratamientoMascota(mascota.getId());
 
         System.out.println("Tratamientos registrados para " + mascota.getNombre() + ":");
@@ -71,7 +71,7 @@ public class Main {
             System.out.println("- " + t.getNombre() + ": " + t.getDescripcion());
         }
 
-        // Finalizar programa
+
         System.out.println("Sistema Clinivet finalizado.");
     }
 }
